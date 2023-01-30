@@ -17,17 +17,26 @@ function parccurent() {
     axios.get("https://myfin.by/currency/minsk")
 
         .then(response => {
-            let currentPage = response.data; // Запись полученного результата - сайт
+            let currentPage = response.data;
+
+            const div = document.createElement('div')
+            div.innerHTML = currentPage
+
+            const current = div.querySelector('#st-container > div > div > div > div > div > div > div > div > div.mt-10 > div > div > div.c-main > div:nth-child(1) > div.c-section.bg-pearl-white > div > div > table > tbody > tr:nth-child(1) > td:nth-child(2)').textContent
+            const currentEuro  = div.querySelector('#st-container > div > div > div > div > div > div > div > div > div.mt-10 > div > div > div.c-main > div:nth-child(1) > div.c-section.bg-pearl-white > div > div > table > tbody > tr:nth-child(2) > td:nth-child(4)').textContent
+            console.log(current)
+            console.log(currentEuro)
+
             // const dom = new JSDOM(currentPage);
             // let current = dom.window.document.querySelector('#st-container > div > div > div > div > div > div > div > div > div.mt-10 > div > div > div.c-main > div:nth-child(1) > div.c-section.bg-pearl-white > div > div > table > tbody > tr:nth-child(1) > td:nth-child(2)').textContent
-            // console.log(current)
+
 
             // fs.appendFileSync('articles.text',current);
         })
 }
 
-parccurent()
+// parccurent()
 
 btn.addEventListener('click', () => {
-    console.log('hi')
+    parccurent()
 })
